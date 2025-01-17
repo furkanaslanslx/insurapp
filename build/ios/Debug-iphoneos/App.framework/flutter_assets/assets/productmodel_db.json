@@ -1,0 +1,36 @@
+{
+  "Code": "P001",
+  "Name": "Comprehensive Insurance",
+  "Questions": [
+    {
+      "Code": "Q001",
+      "Explanation": "Do you want roadside assistance?",
+      "ValueCode": "Yes",
+      "Value": "1"
+    },
+    {
+      "Code": "Q002",
+      "Explanation": "Include natural disaster coverage?",
+      "ValueCode": "No",
+      "Value": "0"
+    }
+  ],
+  "ProductGuarantees": [
+    {
+      "Code": "PG001",
+      "Name": "Damage Coverage",
+      "Amount": "20000",
+      "Amount_Forex": "1000.00",
+      "Currency": "USD",
+      "IsHide": "false"
+    },
+    {
+      "Code": "PG002",
+      "Name": "Personal Injury Coverage",
+      "Amount": "5000",
+      "Amount_Forex": "250.00",
+      "Currency": "USD",
+      "IsHide": "false"
+    }
+  ]
+}

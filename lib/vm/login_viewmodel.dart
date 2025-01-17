@@ -1,0 +1,3 @@
+class LoginViewmodel {
+  void loginToApp() {}
+}

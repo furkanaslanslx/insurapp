@@ -1,0 +1,8 @@
+{
+  "PolicyNo": "POL123456",
+  "StatusMessage": "Policy is active",
+  "Status": "Active",
+  "Explanation": "The policy is currently valid and all payments are up-to-date.",
+  "StartDate": "2024-01-01",
+  "EndDate": "2024-12-31"
+}

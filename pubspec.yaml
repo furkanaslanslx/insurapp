@@ -1,0 +1,86 @@
+name: insurance
+description: "A new Flutter project."
+
+publish_to: "none"
+
+version: 1.0.0+2
+
+environment:
+  sdk: ">=3.4.3 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  flutter_zoom_drawer: ^3.2.0
+  get: ^4.6.6
+  http: ^1.2.2
+  provider: ^6.1.2
+  flutter_card_swiper: ^7.0.2
+  shared_preferences: ^2.3.3
+  flutter_colorpicker: ^1.1.0
+  tinycolor2: ^3.0.1
+  webview_flutter: ^4.10.0
+  mobile_scanner: ^6.0.2
+  introduction_screen: ^3.1.14
+  animations: ^2.0.11
+  animated_custom_dropdown: ^3.1.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^4.0.0
+  flutter_native_splash: ^2.4.3
+  icons_launcher: ^3.0.0
+  mockito: ^5.4.4
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/navigation/
+    - assets/policies/
+    - assets/images/
+    - assets/opening/
+    - assets/policy_db.json
+    - assets/customer_db.json
+    - assets/insurance_db.json
+    - assets/paymentplan_db.json
+    - assets/policyguarantee_db.json
+    - assets/policystatus_db.json
+    - assets/productmodel_db.json
+
+  fonts:
+    - family: OpenSans
+      fonts:
+        - asset: assets/fonts/opensans/OpenSans-Regular.ttf
+        - asset: assets/fonts/opensans/OpenSans-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/opensans/OpenSans-Italic.ttf
+          style: italic
+
+icons_launcher:
+  image_path: "assets/images/Arex-Branding-5.png"
+  platforms:
+    android:
+      enable: true
+      adaptive_round_image: "assets/images/Arex-Branding-5-modified.png"
+    ios:
+      enable: true
+
+flutter_native_splash:
+  color: "#1A1532"
+  image: assets/images/Arex-Branding-5.png
+  color_dark: "#1A1532"
+  image_dark: assets/images/Arex-Branding-5.png
+  android_12:
+    image: assets/images/Arex-Branding-5.png
+    color: "#1A1532"
+    icon_background_color: "#1A1532"
+    image_dark: assets/images/Arex-Branding-5.png
+    color_dark: "#1A1532"
+    icon_background_color_dark: "#1A1532"
+  android: true
+  ios: true
+  android_gravity: center
+  ios_content_mode: scaleAspectFit

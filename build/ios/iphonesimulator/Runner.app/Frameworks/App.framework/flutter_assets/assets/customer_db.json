@@ -1,0 +1,10 @@
+{
+  "Type": 1,
+  "CustomerCode": "CUST001",
+  "CustomerType": "Individual",
+  "IdNo": "12345678901",
+  "CustomerName": "Samet Türel",
+  "Adress": "Atatürk Mah. İnönü Cad. No: 5 İstanbul",
+  "Email": "samet.turel@example.com",
+  "IsHide": "false"
+}
