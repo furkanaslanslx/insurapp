@@ -7,6 +7,7 @@ export 'themenotifier.dart';
 import 'package:flutter/material.dart';
 import 'package:insurance/vm/customer_viewmodel.dart';
 import 'package:insurance/vm/insuranceagent_viewmodel.dart';
+import 'package:insurance/vm/login_viewmodel.dart';
 import 'package:insurance/vm/policy_viewmodel.dart';
 import 'package:insurance/vm/themenotifier.dart';
 import 'package:provider/provider.dart';
@@ -24,6 +25,7 @@ class AllVms extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => InsuranceagentViewmodel()),
         ChangeNotifierProvider(create: (context) => CustomerViewModel()),
         ChangeNotifierProvider(create: (context) => ThemeNotifier()),
+        ChangeNotifierProvider(create: (context) => LoginViewModel()),
       ],
       child: child,
     );

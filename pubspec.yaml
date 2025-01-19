@@ -17,7 +17,7 @@ dependencies:
   http: ^1.2.2
   provider: ^6.1.2
   flutter_card_swiper: ^7.0.2
-  shared_preferences: ^2.3.3
+  shared_preferences: ^2.3.5
   flutter_colorpicker: ^1.1.0
   tinycolor2: ^3.0.1
   webview_flutter: ^4.10.0

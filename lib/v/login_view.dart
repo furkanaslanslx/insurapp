@@ -1,9 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:insurance/services/responsive.dart';
-import 'package:insurance/v/innerdrawer_view.dart';
-import 'package:insurance/v/wdgts/mybttn_wdgt.dart';
-import 'package:insurance/v/wdgts/mytxtfld_wdgt.dart';
 import 'package:insurance/services/variables.dart';
+import 'package:insurance/vm/login_viewmodel.dart';
 import 'package:insurance/vm/themenotifier.dart';
 import 'package:provider/provider.dart';
 
@@ -15,145 +14,159 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
+  final _formKey = GlobalKey<FormState>();
+  final _usernameController = TextEditingController();
+  final _passwordController = TextEditingController();
   final ResponsiveSize _size = ResponsiveSize();
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  // final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _phoneController = TextEditingController();
-  final TextEditingController _passController = TextEditingController();
+  bool _obscurePassword = true;
+
+  @override
+  void dispose() {
+    _usernameController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ThemeNotifier>(builder: (context, themeNotifier, child) {
-      return Scaffold(
-        extendBodyBehindAppBar: true,
-        appBar: AppBar(
-          backgroundColor: const Color(0x00000000),
-          leading: IconButton(
-            onPressed: outerDrawerController.toggle,
-            icon: const Icon(
-              Icons.menu,
+    return Consumer2<LoginViewModel, ThemeNotifier>(
+      builder: (context, loginViewModel, themeNotifier, child) {
+        return Scaffold(
+          appBar: CupertinoNavigationBar(
+            middle: Image.asset('assets/images/Arex-Branding-5.png'),
+            backgroundColor: themeNotifier.primaryColor,
+            leading: CupertinoNavigationBarBackButton(
+              onPressed: () => Navigator.pop(context),
               color: textColor,
             ),
           ),
-        ),
-        backgroundColor: themeNotifier.primaryColor,
-        body: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              SizedBox(height: _size.getHeight(context, kToolbarHeight + 50)),
-              SizedBox(
-                width: _size.getWidth(context, 300),
-                height: _size.getWidth(context, 300),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: Image.asset('assets/images/Arex-Branding-2.png'),
-                ),
-              ),
-              SizedBox(height: _size.getHeight(context, 53)),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('AREX', style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: textColor)),
-                  Text("'e giriş yapın", style: TextStyle(fontSize: 30, fontWeight: FontWeight.normal, color: textColor)),
-                ],
-              ),
-              SizedBox(height: _size.getHeight(context, 20)),
-              const Text('Devam etmek için kimlik bilgilerinizi girin', style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal, color: textColor)),
-              SizedBox(height: _size.getHeight(context, 78)),
-              Form(
+          body: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Form(
                 key: _formKey,
-                child: SizedBox(
-                  width: _size.getWidth(context, 540),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Row(
-                        children: [
-                          Text('TELEFON', style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal, color: textColor)),
-                          Spacer(),
-                        ],
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    SizedBox(height: _size.getWidth(context, 50)),
+                    const Text(
+                      'Hoş Geldiniz',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
                       ),
-                      SizedBox(height: _size.getHeight(context, 15)),
-                      MytxtfldWdgt(
-                        color: textColor,
-                        type: TextInputType.phone,
-                        controller: _phoneController,
-                        hint: '',
-                        // validator: (givenPhone) {
-                        //   if (givenPhone == null || givenPhone.isEmpty) {
-                        //     return 'Telefon numarası gerekli';
-                        //   }
-                        //   if (givenPhone != '5321204075') {
-                        //     return 'Geçersiz telefon numarası';
-                        //   }
-                        //   return null;
-                        // },
-                        validator: (p0) {
-                          return null;
-                        },
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: _size.getWidth(context, 10)),
+                    const Text(
+                      'Hesabınıza giriş yapın',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.grey,
                       ),
-                      SizedBox(height: _size.getHeight(context, 38)),
-                      const Row(
-                        children: [
-                          Text('ŞİFRE', style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal, color: textColor)),
-                          Spacer(),
-                          Text('Şifremi Unuttum?', style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal, color: textColor)),
-                        ],
-                      ),
-                      SizedBox(height: _size.getHeight(context, 15)),
-                      MytxtfldWdgt(
-                        obscureText: true,
-                        type: TextInputType.text,
-                        color: textColor,
-                        controller: _passController,
-                        hint: '',
-                        // validator: (givenPass) {
-                        //   if (givenPass == null || givenPass.isEmpty) {
-                        //     return 'Şifre gerekli';
-                        //   }
-                        //   if (givenPass != '**') {
-                        //     return 'Geçersiz şifre';
-                        //   }
-                        //   return null;
-                        // },
-                        validator: (p0) {
-                          return null;
-                        },
-                      ),
-                      SizedBox(height: _size.getHeight(context, 40)),
-                      SizedBox(
-                        width: _size.getWidth(context, 540),
-                        height: _size.getHeight(context, 70),
-                        child: MybttnWdgt(
-                          text: 'Giriş Yap',
-                          onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const InnerDrawerView()), (route) => false);
-                            }
-                          },
-                          color: textColor,
-                          textStyle: TextStyle(color: themeNotifier.primaryColor, fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: _size.getWidth(context, 50)),
+                    TextFormField(
+                      controller: _usernameController,
+                      decoration: InputDecoration(
+                        labelText: 'Kullanıcı Adı',
+                        prefixIcon: const Icon(Icons.person),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                      SizedBox(height: _size.getHeight(context, 35)),
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text('Hesabınız yok mu?', style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal, color: textColor.withValues(alpha: 0.7))),
-                          const Text('  Kayıt ol', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: textColor)),
-                        ],
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Lütfen kullanıcı adınızı girin';
+                        }
+                        return null;
+                      },
+                    ),
+                    SizedBox(height: _size.getWidth(context, 20)),
+                    TextFormField(
+                      controller: _passwordController,
+                      obscureText: _obscurePassword,
+                      decoration: InputDecoration(
+                        labelText: 'Şifre',
+                        prefixIcon: const Icon(Icons.lock),
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            _obscurePassword ? Icons.visibility : Icons.visibility_off,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _obscurePassword = !_obscurePassword;
+                            });
+                          },
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                       ),
-                    ],
-                  ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Lütfen şifrenizi girin';
+                        }
+                        return null;
+                      },
+                    ),
+                    SizedBox(height: _size.getWidth(context, 30)),
+                    if (loginViewModel.errorMessage.isNotEmpty)
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 20),
+                        child: Text(
+                          loginViewModel.errorMessage,
+                          style: const TextStyle(
+                            color: Colors.red,
+                            fontSize: 14,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    SizedBox(
+                      height: _size.getWidth(context, 50),
+                      child: ElevatedButton(
+                        onPressed: loginViewModel.isLoading
+                            ? null
+                            : () async {
+                                if (_formKey.currentState!.validate()) {
+                                  await loginViewModel.login(
+                                    _usernameController.text,
+                                    _passwordController.text,
+                                  );
+                                  if (loginViewModel.isLoggedIn) {
+                                    if (mounted) {
+                                      Navigator.pop(context);
+                                    }
+                                  }
+                                }
+                              },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: themeNotifier.primaryColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        child: loginViewModel.isLoading
+                            ? const CircularProgressIndicator(color: Colors.white)
+                            : const Text(
+                                'Giriş Yap',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ],
+            ),
           ),
-        ),
-      );
-    });
+        );
+      },
+    );
   }
 }
