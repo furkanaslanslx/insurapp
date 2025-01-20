@@ -44,83 +44,94 @@ class _AllProductsSectionState extends State<AllProductsSection> {
   @override
   Widget build(BuildContext context) {
     List<String> titles = categories.map((category) => category["title"] as String).toList();
-    return Consumer<ThemeNotifier>(builder: (context, themeNotifier, child) {
-      return Column(
-        children: [
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(
-                isMovedList.length,
-                (index) {
-                  return GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        isMovedList[index] = !isMovedList[index];
-                        selectedIndex = isMovedList[index] ? index : null;
+    return Consumer<ThemeNotifier>(
+      builder: (context, themeNotifier, child) {
+        return Column(
+          children: [
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(
+                  isMovedList.length,
+                  (index) {
+                    return GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          isMovedList[index] = !isMovedList[index];
+                          selectedIndex = isMovedList[index] ? index : null;
 
-                        for (int i = 0; i < isMovedList.length; i++) {
-                          if (i != index) {
-                            isMovedList[i] = false;
+                          for (int i = 0; i < isMovedList.length; i++) {
+                            if (i != index) {
+                              isMovedList[i] = false;
+                            }
                           }
-                        }
-                      });
-                    },
-                    child: AnimatedContainer(
-                      duration: const Duration(milliseconds: 300),
-                      curve: Curves.easeOut,
-                      margin: EdgeInsets.only(bottom: isMovedList[index] ? 10.0 : 0.0, right: 5.0, left: 10.0),
-                      transform: Matrix4.translationValues(0, isMovedList[index] ? 10.0 : 0.0, 0),
-                      width: 150,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: isMovedList[index] ? themeNotifier.primaryColor : themeNotifier.secondaryColor, width: isMovedList[index] ? 5 : 2),
+                        });
+                      },
+                      child: AnimatedContainer(
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.easeOut,
+                        margin: EdgeInsets.only(bottom: isMovedList[index] ? 20.0 : 10.0, right: 5.0, left: 10.0),
+                        transform: Matrix4.translationValues(0, isMovedList[index] ? 10.0 : 0.0, 0),
+                        width: 150,
+                        height: 50,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(color: isMovedList[index] ? themeNotifier.primaryColor : themeNotifier.secondaryColor, width: isMovedList[index] ? 5 : 2),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withValues(alpha: 0.5),
+                              spreadRadius: 2,
+                              blurRadius: 5,
+                              offset: const Offset(0, 3),
+                            ),
+                          ],
+                        ),
+                        alignment: Alignment.center,
+                        child: Text(
+                          titles[index],
+                          style: const TextStyle(color: Colors.black),
+                        ),
                       ),
-                      alignment: Alignment.center,
-                      child: Text(
-                        titles[index],
-                        style: const TextStyle(color: Colors.black),
-                      ),
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               ),
             ),
-          ),
-          const SizedBox(height: 10),
-          AnimatedContainer(
-            duration: const Duration(milliseconds: 300),
-            curve: Curves.easeOut,
-            width: MediaQuery.of(context).size.width,
-            height: selectedIndex != null ? 150 : 0,
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            margin: const EdgeInsets.symmetric(horizontal: 10),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: themeNotifier.secondaryColor.darken(40), width: 1),
-            ),
-            child: selectedIndex != null
-                ? ListView(
-                    children: options[selectedIndex!]
-                        .map((option) => Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 5),
-                              child: Text(
-                                option,
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: themeNotifier.primaryColor.brighten(10),
+            // const SizedBox(height: 10),
+            AnimatedContainer(
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.easeOut,
+              width: MediaQuery.of(context).size.width,
+              height: selectedIndex != null ? 150 : 0,
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              margin: const EdgeInsets.symmetric(horizontal: 10),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color: themeNotifier.secondaryColor.darken(40), width: 1),
+              ),
+              child: selectedIndex != null
+                  ? ListView(
+                      children: options[selectedIndex!]
+                          .map((option) => Padding(
+                                padding: const EdgeInsets.symmetric(vertical: 5),
+                                child: Text(
+                                  option,
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: themeNotifier.primaryColor.brighten(10),
+                                  ),
                                 ),
-                              ),
-                            ))
-                        .toList(),
-                  )
-                : null,
-          ),
-        ],
-      );
-    });
+                              ))
+                          .toList(),
+                    )
+                  : null,
+            ),
+          ],
+        );
+      },
+    );
   }
 }
