@@ -10,10 +10,9 @@ class DamageAssistance extends StatefulWidget {
   State<DamageAssistance> createState() => _DamageAssistanceState();
 }
 
-class _DamageAssistanceState extends State<DamageAssistance> with SingleTickerProviderStateMixin {
+class _DamageAssistanceState extends State<DamageAssistance> {
   int? selectedIndex;
-  late AnimationController _controller;
-  late Animation<double> _heightFactor;
+  List<bool> isMovedList = List.generate(6, (index) => false);
 
   final List<Map<String, dynamic>> categories = [
     {
@@ -57,107 +56,109 @@ class _DamageAssistanceState extends State<DamageAssistance> with SingleTickerPr
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-      duration: const Duration(milliseconds: 300),
-      vsync: this,
-    );
-    _heightFactor = Tween<double>(
-      begin: 0.0,
-      end: 1.0,
-    ).animate(CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeInOut,
-    ));
   }
 
   @override
   void dispose() {
-    _controller.dispose();
     super.dispose();
   }
 
   Widget _buildCard(int index, ThemeNotifier themeNotifier) {
-    final isSelected = selectedIndex == index;
-    return Card(
-      elevation: isSelected ? 8 : 4,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-        side: BorderSide(
-          color: categories[index]["color"],
-          width: isSelected ? 4 : 1,
+    return SizedBox(
+      height: 120,
+      child: Card(
+        elevation: isMovedList[index] ? 8 : 4,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+          side: BorderSide(
+            color: categories[index]["color"],
+            width: isMovedList[index] ? 4 : 1,
+          ),
         ),
-      ),
-      child: InkWell(
-        onTap: () {
-          setState(() {
-            if (selectedIndex == index) {
-              selectedIndex = null;
-              _controller.reverse();
-            } else {
-              selectedIndex = index;
-              _controller.forward(from: 0.0);
-            }
-          });
-        },
-        borderRadius: BorderRadius.circular(12),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              categories[index]["icon"],
-              size: 32,
-              color: categories[index]["color"],
-            ),
-            const SizedBox(height: 8),
-            Text(
-              categories[index]["title"],
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
+        child: InkWell(
+          onTap: () {
+            setState(() {
+              isMovedList[index] = !isMovedList[index];
+              selectedIndex = isMovedList[index] ? index : null;
+
+              for (int i = 0; i < isMovedList.length; i++) {
+                if (i != index) {
+                  isMovedList[i] = false;
+                }
+              }
+            });
+          },
+          borderRadius: BorderRadius.circular(12),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                categories[index]["icon"],
+                size: 32,
+                color: categories[index]["color"],
               ),
-            ),
-          ],
+              const SizedBox(height: 8),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: Text(
+                  categories[index]["title"],
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Widget _buildOptions(int index) {
-    final options = categories[index]["options"] as List<dynamic>;
-    return SizeTransition(
-      sizeFactor: _heightFactor,
-      child: Container(
+  Widget _buildOptions(int? index, int rowIndex) {
+    final options = index != null ? categories[index]["options"] as List<dynamic> : [];
+    final isVisible = selectedIndex != null && selectedIndex! ~/ 2 == rowIndex;
+    final color = index != null ? categories[index]["color"] : Colors.transparent;
+
+    return AnimatedOpacity(
+      duration: const Duration(milliseconds: 300),
+      opacity: isVisible ? 1.0 : 0.0,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeOut,
         margin: const EdgeInsets.symmetric(horizontal: 16),
+        height: isVisible ? (options.length * 48.0) : 0,
         decoration: BoxDecoration(
           color: Colors.grey[100],
           borderRadius: BorderRadius.circular(8),
-          border: Border.all(
-            color: categories[index]["color"],
-            width: 1,
-          ),
+          border: Border.all(color: color, width: 1),
         ),
-        child: Column(
-          children: options
-              .map((option) => ListTile(
-                    dense: true,
-                    title: Text(
-                      option.toString(),
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: categories[index]["color"],
-                      ),
-                    ),
-                    trailing: Icon(
-                      Icons.arrow_forward_ios,
-                      size: 12,
-                      color: categories[index]["color"],
-                    ),
-                    onTap: () {
-                      // TODO: Handle option tap
-                    },
-                  ))
-              .toList(),
+        child: ListView.builder(
+          physics: const NeverScrollableScrollPhysics(),
+          padding: EdgeInsets.zero,
+          itemCount: options.length,
+          itemBuilder: (context, optionIndex) {
+            final option = options[optionIndex];
+            return ListTile(
+              dense: true,
+              title: Text(
+                option.toString(),
+                style: TextStyle(
+                  fontSize: 12,
+                  color: color,
+                ),
+              ),
+              trailing: Icon(
+                Icons.arrow_forward_ios,
+                size: 12,
+                color: color,
+              ),
+              onTap: () {
+                // TODO: Handle option tap
+              },
+            );
+          },
         ),
       ),
     );
@@ -167,35 +168,50 @@ class _DamageAssistanceState extends State<DamageAssistance> with SingleTickerPr
   Widget build(BuildContext context) {
     return Consumer<ThemeNotifier>(
       builder: (context, themeNotifier, child) {
-        return Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: ListView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: (categories.length / 2).ceil(),
-            itemBuilder: (context, rowIndex) {
-              return Column(
-                children: [
-                  Row(
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 24.0),
+              child: Text("Acil Yardım", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: themeNotifier.secondaryColor)),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 8.0),
+              child: ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: (categories.length / 2).ceil(),
+                itemBuilder: (context, rowIndex) {
+                  return Column(
                     children: [
-                      for (int i = rowIndex * 2; i < min((rowIndex + 1) * 2, categories.length); i++)
-                        Expanded(
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                              left: i.isEven ? 0 : 8,
-                              right: i.isEven ? 8 : 0,
-                              bottom: 16,
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          for (int i = rowIndex * 2; i < min((rowIndex + 1) * 2, categories.length); i++)
+                            Expanded(
+                              child: Padding(
+                                padding: EdgeInsets.only(
+                                  left: i.isEven ? 0 : 8,
+                                  right: i.isEven ? 8 : 0,
+                                  bottom: isMovedList[i] ? 20.0 : 10.0,
+                                ),
+                                child: AnimatedContainer(
+                                  duration: const Duration(milliseconds: 300),
+                                  curve: Curves.easeOut,
+                                  transform: Matrix4.translationValues(0, isMovedList[i] ? 10.0 : 0.0, 0),
+                                  child: _buildCard(i, themeNotifier),
+                                ),
+                              ),
                             ),
-                            child: _buildCard(i, themeNotifier),
-                          ),
-                        ),
+                        ],
+                      ),
+                      _buildOptions(selectedIndex, rowIndex),
                     ],
-                  ),
-                  if (selectedIndex != null && selectedIndex! ~/ 2 == rowIndex) _buildOptions(selectedIndex!),
-                ],
-              );
-            },
-          ),
+                  );
+                },
+              ),
+            ),
+          ],
         );
       },
     );

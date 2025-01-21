@@ -61,7 +61,7 @@ class _LandingViewState extends State<LandingView> with AutomaticKeepAliveClient
                                 enabled: false,
                                 style: const TextStyle(color: Colors.white70),
                                 controller: _searchController,
-                                placeholder: 'Ara...',
+                                placeholder: 'Size nasıl yardımcı olabiliriz?',
                                 placeholderStyle: const TextStyle(color: CupertinoColors.inactiveGray),
                                 prefix: const Padding(
                                   padding: EdgeInsets.symmetric(horizontal: 8.0),

@@ -47,7 +47,16 @@ class _AllProductsSectionState extends State<AllProductsSection> {
     return Consumer<ThemeNotifier>(
       builder: (context, themeNotifier, child) {
         return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 16.0),
+              child: Text(
+                "Tüm Ürünler",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: themeNotifier.primaryColor),
+              ),
+            ),
+            const SizedBox(height: 10),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(

@@ -83,105 +83,107 @@ class _Tab2ContentState extends State<Tab2Content> with TickerProviderStateMixin
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ThemeNotifier>(builder: (context, themeNotifier, child) {
-      return Scaffold(
-        appBar: CupertinoNavigationBar(
-          middle: Image.asset('assets/images/Arex-Branding-5.png'),
-          backgroundColor: themeNotifier.primaryColor,
-          leading: CupertinoNavigationBarBackButton(
-            onPressed: () => Navigator.pop(context),
-            color: textColor,
-          ),
-        ),
-        body: Column(
-          children: [
-            Container(
-              color: themeNotifier.primaryColor,
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Expanded(
-                    child: CupertinoTextField(
-                      focusNode: _searchFocusNode,
-                      autofocus: true,
-                      style: const TextStyle(color: Colors.white70),
-                      controller: _searchController,
-                      placeholder: 'Ara...',
-                      placeholderStyle: const TextStyle(color: CupertinoColors.inactiveGray),
-                      prefix: const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 8.0),
-                        child: Icon(CupertinoIcons.search, color: CupertinoColors.inactiveGray),
-                      ),
-                      decoration: BoxDecoration(
-                        color: themeNotifier.primaryColor.brighten(10),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+    return Consumer<ThemeNotifier>(
+      builder: (context, themeNotifier, child) {
+        return Scaffold(
+          appBar: CupertinoNavigationBar(
+            middle: Image.asset('assets/images/Arex-Branding-5.png'),
+            backgroundColor: themeNotifier.primaryColor,
+            leading: CupertinoNavigationBarBackButton(
+              onPressed: () => Navigator.pop(context),
+              color: textColor,
             ),
-            Expanded(
-              child: ListView.builder(
-                shrinkWrap: true,
+          ),
+          body: Column(
+            children: [
+              Container(
+                color: themeNotifier.primaryColor,
                 padding: const EdgeInsets.all(8.0),
-                physics: const BouncingScrollPhysics(),
-                itemCount: categories.length,
-                itemBuilder: (context, index) {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      GestureDetector(
-                        onTap: () => onToggleExpansion(index),
-                        child: Card(
-                          margin: const EdgeInsets.symmetric(vertical: 8.0),
-                          elevation: 2.0,
-                          child: ListTile(
-                            leading: Icon(categories[index]['icon'], size: 40.0),
-                            title: Text(categories[index]['title']),
-                          ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Expanded(
+                      child: CupertinoTextField(
+                        focusNode: _searchFocusNode,
+                        autofocus: true,
+                        style: const TextStyle(color: Colors.white70),
+                        controller: _searchController,
+                        placeholder: 'Size nasıl yardımcı olabiliriz?',
+                        placeholderStyle: const TextStyle(color: CupertinoColors.inactiveGray),
+                        prefix: const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Icon(CupertinoIcons.search, color: CupertinoColors.inactiveGray),
+                        ),
+                        decoration: BoxDecoration(
+                          color: themeNotifier.primaryColor.brighten(10),
+                          borderRadius: BorderRadius.circular(8),
                         ),
                       ),
-                      SizeTransition(
-                        sizeFactor: controllers[index],
-                        axisAlignment: -1.0,
-                        child: Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                          decoration: BoxDecoration(
-                            color: Colors.grey[200],
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Row(
-                              children: options.map((option) {
-                                return Container(
-                                  margin: const EdgeInsets.symmetric(horizontal: 8.0),
-                                  padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-                                  decoration: BoxDecoration(
-                                    color: Colors.blue,
-                                    borderRadius: BorderRadius.circular(16.0),
-                                  ),
-                                  child: Text(
-                                    option,
-                                    style: const TextStyle(color: Colors.white),
-                                  ),
-                                );
-                              }).toList(),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  padding: const EdgeInsets.all(8.0),
+                  physics: const BouncingScrollPhysics(),
+                  itemCount: categories.length,
+                  itemBuilder: (context, index) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        GestureDetector(
+                          onTap: () => onToggleExpansion(index),
+                          child: Card(
+                            margin: const EdgeInsets.symmetric(vertical: 8.0),
+                            elevation: 2.0,
+                            child: ListTile(
+                              leading: Icon(categories[index]['icon'], size: 40.0),
+                              title: Text(categories[index]['title']),
                             ),
                           ),
                         ),
-                      ),
-                    ],
-                  );
-                },
+                        SizeTransition(
+                          sizeFactor: controllers[index],
+                          axisAlignment: -1.0,
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                            decoration: BoxDecoration(
+                              color: Colors.grey[200],
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                children: options.map((option) {
+                                  return Container(
+                                    margin: const EdgeInsets.symmetric(horizontal: 8.0),
+                                    padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                                    decoration: BoxDecoration(
+                                      color: Colors.blue,
+                                      borderRadius: BorderRadius.circular(16.0),
+                                    ),
+                                    child: Text(
+                                      option,
+                                      style: const TextStyle(color: Colors.white),
+                                    ),
+                                  );
+                                }).toList(),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    );
+                  },
+                ),
               ),
-            ),
-          ],
-        ),
-      );
-    });
+            ],
+          ),
+        );
+      },
+    );
   }
 }
