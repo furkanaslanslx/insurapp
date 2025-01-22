@@ -53,26 +53,18 @@ class _DamageAssistanceState extends State<DamageAssistance> {
     },
   ];
 
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
   Widget _buildCard(int index, ThemeNotifier themeNotifier) {
     return SizedBox(
-      height: 120,
+      width: double.infinity,
+      height: 100,
       child: Card(
         elevation: isMovedList[index] ? 8 : 4,
+        color: themeNotifier.primaryColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
           side: BorderSide(
-            color: categories[index]["color"],
-            width: isMovedList[index] ? 4 : 1,
+            color: Colors.white,
+            width: isMovedList[index] ? 2 : 1,
           ),
         ),
         child: InkWell(
@@ -95,18 +87,16 @@ class _DamageAssistanceState extends State<DamageAssistance> {
               Icon(
                 categories[index]["icon"],
                 size: 32,
-                color: categories[index]["color"],
+                color: themeNotifier.secondaryColor,
               ),
               const SizedBox(height: 8),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: Text(
-                  categories[index]["title"],
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                  ),
+              Text(
+                categories[index]["title"],
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
                 ),
               ),
             ],
@@ -116,49 +106,72 @@ class _DamageAssistanceState extends State<DamageAssistance> {
     );
   }
 
-  Widget _buildOptions(int? index, int rowIndex) {
-    final options = index != null ? categories[index]["options"] as List<dynamic> : [];
-    final isVisible = selectedIndex != null && selectedIndex! ~/ 2 == rowIndex;
-    final color = index != null ? categories[index]["color"] : Colors.transparent;
+  Widget _buildOptions(int index, int rowIndex) {
+    return Consumer<ThemeNotifier>(
+      builder: (context, themeNotifier, child) {
+        final firstIndex = rowIndex * 2;
+        final secondIndex = firstIndex + 1;
+        final isFirstSelected = selectedIndex == firstIndex;
+        final isSecondSelected = selectedIndex == secondIndex && secondIndex < categories.length;
 
-    return AnimatedOpacity(
+        return Stack(
+          children: [
+            AnimatedOpacity(
+              duration: const Duration(milliseconds: 300),
+              opacity: isFirstSelected ? 1.0 : 0.0,
+              child: _buildOptionsList(firstIndex, themeNotifier),
+            ),
+            if (secondIndex < categories.length)
+              AnimatedOpacity(
+                duration: const Duration(milliseconds: 300),
+                opacity: isSecondSelected ? 1.0 : 0.0,
+                child: _buildOptionsList(secondIndex, themeNotifier),
+              ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget _buildOptionsList(int index, ThemeNotifier themeNotifier) {
+    final options = categories[index]["options"] as List<dynamic>;
+    return AnimatedContainer(
       duration: const Duration(milliseconds: 300),
-      opacity: isVisible ? 1.0 : 0.0,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeOut,
-        margin: const EdgeInsets.symmetric(horizontal: 16),
-        height: isVisible ? (options.length * 48.0) : 0,
-        decoration: BoxDecoration(
-          color: Colors.grey[100],
-          borderRadius: BorderRadius.circular(8),
-          border: Border.all(color: color, width: 1),
+      curve: Curves.easeOut,
+      margin: EdgeInsets.only(left: 4, right: 4, bottom: selectedIndex == index ? 16 : 0),
+      height: selectedIndex == index ? (options.length * 48.0) : 0,
+      decoration: BoxDecoration(
+        color: Colors.grey[100],
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(
+          color: themeNotifier.primaryColor,
+          width: 2,
         ),
-        child: ListView.builder(
-          physics: const NeverScrollableScrollPhysics(),
-          padding: EdgeInsets.zero,
-          itemCount: options.length,
-          itemBuilder: (context, optionIndex) {
-            final option = options[optionIndex];
-            return ListTile(
-              dense: true,
-              title: Text(
-                option.toString(),
-                style: TextStyle(
-                  fontSize: 12,
-                  color: color,
-                ),
-              ),
-              trailing: Icon(
-                Icons.arrow_forward_ios,
-                size: 12,
-                color: color,
-              ),
-              onTap: () {
-                // TODO: Handle option tap
-              },
-            );
-          },
+      ),
+      clipBehavior: Clip.antiAlias,
+      child: SingleChildScrollView(
+        physics: const NeverScrollableScrollPhysics(),
+        child: Column(
+          children: options
+              .map((option) => ListTile(
+                    dense: true,
+                    title: Text(
+                      option.toString(),
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: themeNotifier.primaryColor,
+                      ),
+                    ),
+                    trailing: Icon(
+                      Icons.arrow_forward_ios,
+                      size: 12,
+                      color: themeNotifier.primaryColor,
+                    ),
+                    onTap: () {
+                      // TODO: Handle option tap
+                    },
+                  ))
+              .toList(),
         ),
       ),
     );
@@ -176,9 +189,10 @@ class _DamageAssistanceState extends State<DamageAssistance> {
               child: Text("Acil Yardım", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: themeNotifier.secondaryColor)),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 8.0),
+              padding: const EdgeInsets.only(left: 16.0, right: 16.0),
               child: ListView.builder(
                 shrinkWrap: true,
+                padding: EdgeInsets.zero,
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: (categories.length / 2).ceil(),
                 itemBuilder: (context, rowIndex) {
@@ -205,7 +219,7 @@ class _DamageAssistanceState extends State<DamageAssistance> {
                             ),
                         ],
                       ),
-                      _buildOptions(selectedIndex, rowIndex),
+                      _buildOptions(rowIndex * 2, rowIndex),
                     ],
                   );
                 },
