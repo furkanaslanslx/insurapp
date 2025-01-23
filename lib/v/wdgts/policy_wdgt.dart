@@ -28,10 +28,9 @@ class _PolicyWdgtState extends State<PolicyWdgt> {
         },
         child: Card(
           margin: EdgeInsets.only(left: _size.getWidth(context, 40), right: _size.getWidth(context, 40), bottom: 10, top: 10),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0),
-          ),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0), side: BorderSide(color: themeNotifier.primaryColor, width: .5)),
           elevation: 5,
+          color: const Color(0xFFFFFFFF),
           child: Padding(
             padding: EdgeInsets.all(_size.getWidth(context, 35)),
             child: Column(

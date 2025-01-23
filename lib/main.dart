@@ -27,6 +27,7 @@ class Root extends StatelessWidget {
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
+            scaffoldBackgroundColor: const Color(0xFFFFFFFF),
             fontFamily: 'OpenSans',
             splashColor: Colors.transparent,
             highlightColor: Colors.transparent,

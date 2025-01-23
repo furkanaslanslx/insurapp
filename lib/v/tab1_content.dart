@@ -30,7 +30,7 @@ class _Tab1ContentState extends State<Tab1Content> {
         alignment: AlignmentDirectional.topCenter,
         children: [
           Container(
-            height: widget.size.getWidth(context, 295),
+            height: widget.size.getWidth(context, 345),
             width: widget.size.getWidth(context, 750),
             color: themeNotifier.primaryColor,
           ),

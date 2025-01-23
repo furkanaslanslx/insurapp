@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:insurance/services/responsive.dart';
 import 'package:insurance/services/variables.dart';
@@ -56,6 +57,36 @@ class _NavigatoinWdgtState extends State<NavigatoinWdgt> {
 
   final ResponsiveSize _size = ResponsiveSize();
 
+  Widget _buildTabIcon(int index, IconData icon, ThemeNotifier themeNotifier) {
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        AnimatedOpacity(
+          duration: const Duration(milliseconds: 300),
+          opacity: _selectedIndex == index ? 1.0 : 0.0,
+          child: Container(
+            width: 90,
+            height: 50,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(25),
+              // shape: BoxShape.circle,
+              color: themeNotifier.primaryColor.withValues(alpha: 0.2),
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 0),
+          child: Center(
+            child: Icon(
+              icon,
+              color: _selectedIndex == index ? themeNotifier.primaryColor : Colors.grey[500],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<ThemeNotifier>(
@@ -79,9 +110,17 @@ class _NavigatoinWdgtState extends State<NavigatoinWdgt> {
                 left: 0,
                 right: 0,
                 child: Container(
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFFFFFFF),
+                    border: Border(
+                      top: BorderSide(
+                        color: themeNotifier.primaryColor,
+                        width: .3,
+                      ),
+                    ),
+                  ),
                   height: navigationHeight,
                   padding: EdgeInsets.zero,
-                  color: const Color.fromRGBO(255, 255, 255, 1),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: (() {
@@ -102,10 +141,7 @@ class _NavigatoinWdgtState extends State<NavigatoinWdgt> {
                             child: SizedBox(
                               width: _size.getWidth(context, 50),
                               height: _size.getHeight(context, 50),
-                              child: Icon(
-                                Icons.home,
-                                color: _selectedIndex == 0 ? themeNotifier.primaryColor : Colors.grey[500],
-                              ),
+                              child: _buildTabIcon(0, CupertinoIcons.home, themeNotifier),
                             ),
                           ),
                         ),
@@ -119,10 +155,7 @@ class _NavigatoinWdgtState extends State<NavigatoinWdgt> {
                             child: SizedBox(
                               width: _size.getWidth(context, 50),
                               height: _size.getHeight(context, 50),
-                              child: Icon(
-                                Icons.security,
-                                color: _selectedIndex == 1 ? themeNotifier.primaryColor : Colors.grey[500],
-                              ),
+                              child: _buildTabIcon(1, CupertinoIcons.shield, themeNotifier),
                             ),
                           ),
                         ),
@@ -136,10 +169,7 @@ class _NavigatoinWdgtState extends State<NavigatoinWdgt> {
                             child: SizedBox(
                               width: _size.getWidth(context, 50),
                               height: _size.getHeight(context, 50),
-                              child: Icon(
-                                Icons.add,
-                                color: _selectedIndex == 2 ? themeNotifier.primaryColor : Colors.grey[500],
-                              ),
+                              child: _buildTabIcon(2, CupertinoIcons.add, themeNotifier),
                             ),
                           ),
                         ),
@@ -153,10 +183,7 @@ class _NavigatoinWdgtState extends State<NavigatoinWdgt> {
                             child: SizedBox(
                               width: _size.getWidth(context, 50),
                               height: _size.getHeight(context, 50),
-                              child: Icon(
-                                Icons.person,
-                                color: _selectedIndex == 3 ? themeNotifier.primaryColor : Colors.grey[500],
-                              ),
+                              child: _buildTabIcon(3, CupertinoIcons.person, themeNotifier),
                             ),
                           ),
                         ),

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:insurance/vm/themenotifier.dart';
 import 'package:provider/provider.dart';
@@ -17,46 +18,74 @@ class _DamageAssistanceState extends State<DamageAssistance> {
   final List<Map<String, dynamic>> categories = [
     {
       "title": "Hasar Anında",
-      "icon": Icons.warning,
+      "imagePath": "https://storage.acerapps.io/app-1141/public/20221019/hasar.svg",
+      "icon": CupertinoIcons.exclamationmark_triangle_fill,
       "color": Colors.deepPurpleAccent,
-      "options": ["Kaza Tutanağı", "Acil Yardım", "Çekici Hizmeti"]
+      "options": [
+        {"subTitle": "Hasar ve Yardım", "icon": CupertinoIcons.shield},
+      ]
     },
     {
       "title": "Hasar İhbarı",
-      "icon": Icons.attach_money,
+      "imagePath": "https://storage.acerapps.io/app-1141/public/20221019/hasar.svg",
+      "icon": CupertinoIcons.money_dollar_circle_fill,
       "color": Colors.deepOrangeAccent,
-      "options": ["Online İhbar", "Telefon ile İhbar", "Mobil İhbar"]
+      "options": [
+        {"subTitle": "Online İhbar", "icon": CupertinoIcons.cloud_upload},
+        {"subTitle": "Telefon ile İhbar", "icon": CupertinoIcons.phone},
+        {"subTitle": "Mobil İhbar", "icon": CupertinoIcons.device_phone_portrait},
+      ]
     },
     {
       "title": "Anlaşmalı Servisler",
-      "icon": Icons.directions_car,
+      "imagePath": "https://storage.acerapps.io/app-1141/public/20221019/hasar.svg",
+      "icon": CupertinoIcons.car_fill,
       "color": Colors.redAccent,
-      "options": ["Servis Bul", "Randevu Al", "Servis Değerlendir"]
+      "options": [
+        {"subTitle": "Servis Bul", "icon": CupertinoIcons.location},
+        {"subTitle": "Randevu Al", "icon": CupertinoIcons.calendar},
+        {"subTitle": "Servis Değerlendir", "icon": CupertinoIcons.star},
+      ]
     },
     {
       "title": "Anlaşmalı Sağlık Kurumları",
-      "icon": Icons.business,
+      "imagePath": "https://storage.acerapps.io/app-1141/public/20221019/hasar.svg",
+      "icon": CupertinoIcons.building_2_fill,
       "color": Colors.lightBlueAccent,
-      "options": ["Hastane Bul", "Randevu Al", "Doktor Ara"]
+      "options": [
+        {"subTitle": "Hastane Bul", "icon": CupertinoIcons.search},
+        {"subTitle": "Randevu Al", "icon": CupertinoIcons.calendar_today},
+        {"subTitle": "Doktor Ara", "icon": CupertinoIcons.person},
+      ]
     },
     {
       "title": "Anlaşmalı Servis Başvurusu",
-      "icon": Icons.shopping_bag,
+      "imagePath": "https://storage.acerapps.io/app-1141/public/20221019/hasar.svg",
+      "icon": CupertinoIcons.bag_fill,
       "color": Colors.lightGreenAccent,
-      "options": ["Başvuru Yap", "Başvuru Takip", "Başvuru İptal"]
+      "options": [
+        {"subTitle": "Başvuru Yap", "icon": CupertinoIcons.add_circled},
+        {"subTitle": "Başvuru Takip", "icon": CupertinoIcons.search_circle},
+        {"subTitle": "Başvuru İptal", "icon": CupertinoIcons.clear_circled},
+      ]
     },
     {
       "title": "Tedarikçi Başvurusu",
-      "icon": Icons.engineering,
+      "imagePath": "https://storage.acerapps.io/app-1141/public/20221019/hasar.svg",
+      "icon": CupertinoIcons.wrench_fill,
       "color": Colors.amberAccent,
-      "options": ["Yeni Başvuru", "Başvuru Sorgula", "Belgeler"]
+      "options": [
+        {"subTitle": "Yeni Başvuru", "icon": CupertinoIcons.doc_text_fill},
+        {"subTitle": "Başvuru Sorgula", "icon": CupertinoIcons.doc_plaintext},
+        {"subTitle": "Belgeler", "icon": CupertinoIcons.folder_fill},
+      ]
     },
   ];
 
   Widget _buildCard(int index, ThemeNotifier themeNotifier) {
     return SizedBox(
       width: double.infinity,
-      height: 100,
+      height: 108,
       child: Card(
         elevation: isMovedList[index] ? 8 : 4,
         color: themeNotifier.primaryColor,
@@ -81,25 +110,29 @@ class _DamageAssistanceState extends State<DamageAssistance> {
             });
           },
           borderRadius: BorderRadius.circular(12),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                categories[index]["icon"],
-                size: 32,
-                color: themeNotifier.secondaryColor,
-              ),
-              const SizedBox(height: 8),
-              Text(
-                categories[index]["title"],
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+          child: Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  categories[index]["icon"],
+                  size: 32,
+                  color: themeNotifier.secondaryColor,
                 ),
-              ),
-            ],
+                // Image.network(categories[index]["imagePath"]),
+                const SizedBox(height: 8),
+                Text(
+                  categories[index]["title"],
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -134,18 +167,18 @@ class _DamageAssistanceState extends State<DamageAssistance> {
   }
 
   Widget _buildOptionsList(int index, ThemeNotifier themeNotifier) {
-    final options = categories[index]["options"] as List<dynamic>;
+    final options = categories[index]["options"] as List<Map<String, dynamic>>;
     return AnimatedContainer(
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeOut,
       margin: EdgeInsets.only(left: 4, right: 4, bottom: selectedIndex == index ? 16 : 0),
       height: selectedIndex == index ? (options.length * 48.0) : 0,
       decoration: BoxDecoration(
-        color: Colors.grey[100],
+        color: const Color(0xFFFFFFFF),
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
           color: themeNotifier.primaryColor,
-          width: 2,
+          width: 1,
         ),
       ),
       clipBehavior: Clip.antiAlias,
@@ -155,11 +188,13 @@ class _DamageAssistanceState extends State<DamageAssistance> {
           children: options
               .map((option) => ListTile(
                     dense: true,
+                    leading: Icon(option["icon"]),
                     title: Text(
-                      option.toString(),
+                      option["subTitle"].toString(),
                       style: TextStyle(
-                        fontSize: 12,
+                        fontSize: 14,
                         color: themeNotifier.primaryColor,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                     trailing: Icon(
@@ -203,18 +238,16 @@ class _DamageAssistanceState extends State<DamageAssistance> {
                         children: [
                           for (int i = rowIndex * 2; i < min((rowIndex + 1) * 2, categories.length); i++)
                             Expanded(
-                              child: Padding(
+                              child: AnimatedContainer(
+                                duration: const Duration(milliseconds: 300),
                                 padding: EdgeInsets.only(
                                   left: i.isEven ? 0 : 8,
                                   right: i.isEven ? 8 : 0,
                                   bottom: isMovedList[i] ? 20.0 : 10.0,
                                 ),
-                                child: AnimatedContainer(
-                                  duration: const Duration(milliseconds: 300),
-                                  curve: Curves.easeOut,
-                                  transform: Matrix4.translationValues(0, isMovedList[i] ? 10.0 : 0.0, 0),
-                                  child: _buildCard(i, themeNotifier),
-                                ),
+                                curve: Curves.easeOut,
+                                transform: Matrix4.translationValues(0.0, isMovedList[i] ? 10.0 : 0.0, 0.0),
+                                child: _buildCard(i, themeNotifier),
                               ),
                             ),
                         ],

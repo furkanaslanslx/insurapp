@@ -38,7 +38,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		6D+1u+fsbObSAHr0+qIVVu+p8XQ=
+		hS8wm+i17eHhG74OWXNDdmMGWSA=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -46,15 +46,15 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		mdZAK79IQWnH1mXqysvL6fXmZdA=
+		LueLGNGpUv7BRWTntslb26fUBKw=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
 		<data>
-		p10P8r2jxO+GnAiSsfky8VD9LL0=
+		ntpEq7ZBmgXo4cz7R6gZWDcQs/I=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<data>
-		hTDPo50LcKVixWFnGVOZV2v7FOQ=
+		auuK6xI95ZQ+Sn2qowJ64T7bPNQ=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/FontManifest.json</key>
 		<data>
@@ -111,6 +111,10 @@
 		<key>Frameworks/App.framework/flutter_assets/assets/images/arex-logo.png</key>
 		<data>
 		SGyDH8QaImVi7Gzc3QbPnvHoFkY=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/images/hasar.svg</key>
+		<data>
+		s8N1UQKClBK8pd65krR0g4zDDm8=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/assets/insurance_db.json</key>
 		<data>
@@ -206,7 +210,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		qL4Qhg0ecjzsHJqOtFZdKCgHWD4=
+		8NOiX+rK3jNxdPSPD0N7/BQYoGY=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -522,7 +526,7 @@
 		</data>
 		<key>Runner.debug.dylib</key>
 		<data>
-		YFRP2Fs970HDvjyI79RcUeGdwrg=
+		3pwG4GSIOabsJx+tVNTJnZMccLo=
 		</data>
 		<key>__preview.dylib</key>
 		<data>
@@ -599,7 +603,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			goEJwDPVlhe6ClCOuV4rGFRoC2XKzTU0wXlqHC3aWtY=
+			SYWVNGevBQdKoyEnmCV3P6iDYHQJ9vjnRH6vBw7D1+0=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -613,21 +617,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			zIYP/ejjJwHPkOe4GTufgFEHnER62xltaLzb3t+HhIQ=
+			Mz4y046N8ZtGLYHK+KIFV0tpoSbH588QddBGKtiVpMo=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			GUS1ldOAw/WjSqXBswk+NB9uiJnFamPqgLcQcB+Zyw0=
+			P7LQBcC/+SsYpIyFlpXUSOuYxjGgwJQt0ZB/51uz3wQ=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			XhOJM62cfnlsZAo/PtmcLa35oEyJyIi7j63AZIy9Fs0=
+			rjdvRWh/fmyulFgbBeYeSfKtBG4qDHQ3EvH+hzvSABM=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/FontManifest.json</key>
@@ -726,6 +730,13 @@
 			<key>hash2</key>
 			<data>
 			EZHHhoVgxNzBK0sp+8D6pGxdZtATVxrUT0CBzCDlQ5c=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/images/hasar.svg</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			wvYqZZDZUxf02B6E+dtJYBmN4q2hgyQSA6fSnVkcgsE=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/assets/insurance_db.json</key>
@@ -893,7 +904,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			VVxNI9b7Z/NLdcZWTwTYvJkrtmwhjJB2w2khrwRTbrY=
+			Rt3kvu/LXlJ/8K2XGzxQEkZFJkmyP61NRhHZ865v/+s=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
@@ -1432,7 +1443,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			hQbiX35lPK1pdKomSl3L4+CJyQWlhfTFy6nR4upjxug=
+			KEMUUYhQMJ8/eKfoXUAJSdw3wbaYxFHb0xpDVmAzUEM=
 			</data>
 		</dict>
 		<key>__preview.dylib</key>

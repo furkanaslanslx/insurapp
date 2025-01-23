@@ -16,73 +16,81 @@ class _InsideProductsViewState extends State<InsideProductsView> {
   List<Category> categories = [
     Category(
       title: 'ARAÇ',
-      subItems: ['GENİŞLETİLMİŞ KASKO'],
+      subItems: [
+        {"title": "GENİŞLETİLMİŞ KASKO", "icon": CupertinoIcons.car},
+      ],
     ),
     Category(
       title: 'İŞYERİ',
-      subItems: ['İŞYERİ PAKET SİGORTASI', 'KUYUMCU PAKET SİGORTASI'],
+      subItems: [
+        {"title": "İŞYERİ PAKET SİGORTASI", "icon": CupertinoIcons.briefcase},
+        {"title": "KUYUMCU PAKET SİGORTASI", "icon": CupertinoIcons.circle_filled},
+      ],
     ),
     Category(
       title: 'ÖZEL ÜRÜNLER',
       subItems: [
-        'AREX KOLEKSİYON ESERLERİ SİGORTASI',
-        'SİBER GÜVENLİK SİGORTASI',
-        'KLİNİK DENEYLER SORUMLULUK SİGORTASI',
+        {"title": "AREX KOLEKSİYON ESERLERİ SİGORTASI", "icon": CupertinoIcons.collections},
+        {"title": "SİBER GÜVENLİK SİGORTASI", "icon": CupertinoIcons.lock_shield},
+        {"title": "KLİNİK DENEYLER SORUMLULUK SİGORTASI", "icon": CupertinoIcons.heart},
       ],
     ),
     Category(
       title: 'MÜHENDİSLİK',
       subItems: [
-        'İNŞAAT ALL-RİSK SİGORTASI',
-        'ELEKTRONİK CİHAZ SİGORTASI',
-        'MAKİNE KIRILMA SİGORTASI',
-        'MONTAJ ALL RISK SİGORTASI',
+        {"title": "İNŞAAT ALL-RİSK SİGORTASI", "icon": CupertinoIcons.hammer},
+        {"title": "ELEKTRONİK CİHAZ SİGORTASI", "icon": CupertinoIcons.device_laptop},
+        {"title": "MAKİNE KIRILMA SİGORTASI", "icon": CupertinoIcons.gear_alt_fill},
+        {"title": "MONTAJ ALL RISK SİGORTASI", "icon": CupertinoIcons.wrench_fill},
       ],
     ),
     Category(
       title: 'FERDİ KAZA',
       subItems: [
-        'BİREYSEL FERDİ KAZA SİGORTASI',
-        'GRUP FERDİ KAZA SİGORTASI',
-        'MADEN ÇALIŞANLARI ZORUNLU FERDİ KAZA SİGORTASI',
+        {"title": "BİREYSEL FERDİ KAZA SİGORTASI", "icon": CupertinoIcons.person},
+        {"title": "GRUP FERDİ KAZA SİGORTASI", "icon": CupertinoIcons.group},
+        {"title": "MADEN ÇALIŞANLARI ZORUNLU FERDİ KAZA SİGORTASI", "icon": CupertinoIcons.person_2_square_stack},
       ],
     ),
     Category(
       title: 'FİNANS',
       subItems: [
-        'KEFALET SİGORTASI',
-        'DEPOZİTOM GÜVENDE KEFALET SENEDİ',
-        'BİNA TAMAMLAMA SİGORTASI',
+        {"title": "KEFALET SİGORTASI", "icon": CupertinoIcons.check_mark_circled},
+        {"title": "DEPOZİTOM GÜVENDE KEFALET SENEDİ", "icon": CupertinoIcons.money_dollar_circle},
+        {"title": "BİNA TAMAMLAMA SİGORTASI", "icon": CupertinoIcons.house_alt_fill},
       ],
     ),
     Category(
       title: 'SAĞLIK',
       subItems: [
-        'YABANCI SAĞLIK SİGORTASI',
-        'YURT DIŞI SEYAHAT SAĞLIK SİGORTASI',
-        'YURT DIŞI EĞİTİM SEYAHAT SİGORTASI',
-        'YURT DIŞI ÇALIŞMA SEYAHAT SİGORTASI',
+        {"title": "YABANCI SAĞLIK SİGORTASI", "icon": CupertinoIcons.heart_fill},
+        {"title": "YURT DIŞI SEYAHAT SAĞLIK SİGORTASI", "icon": CupertinoIcons.airplane},
+        {"title": "YURT DIŞI EĞİTİM SEYAHAT SİGORTASI", "icon": CupertinoIcons.book},
+        {"title": "YURT DIŞI ÇALIŞMA SEYAHAT SİGORTASI", "icon": CupertinoIcons.briefcase_fill},
       ],
     ),
     Category(
       title: 'KONUT',
-      subItems: ['KONUT PAKET SİGORTASI', 'ZORUNLU DEPREM SİGORTASI'],
+      subItems: [
+        {"title": "KONUT PAKET SİGORTASI", "icon": CupertinoIcons.house},
+        {"title": "ZORUNLU DEPREM SİGORTASI", "icon": CupertinoIcons.building_2_fill},
+      ],
     ),
     Category(
       title: 'SORUMLULUK',
       subItems: [
-        'İŞVEREN MALİ SORUMLULUK SİGORTASI',
-        'MESLEKİ MALİ SORUMLULUK SİGORTASI',
-        'ÜÇÜNCÜ ŞAHIS MALİ SORUMLULUK SİGORTASI',
-        'ÜRÜN SORUMLULUK SİGORTASI',
+        {"title": "İŞVEREN MALİ SORUMLULUK SİGORTASI", "icon": CupertinoIcons.chart_pie},
+        {"title": "MESLEKİ MALİ SORUMLULUK SİGORTASI", "icon": CupertinoIcons.creditcard},
+        {"title": "ÜÇÜNCÜ ŞAHIS MALİ SORUMLULUK SİGORTASI", "icon": CupertinoIcons.group},
+        {"title": "ÜRÜN SORUMLULUK SİGORTASI", "icon": CupertinoIcons.cube_box},
       ],
     ),
     Category(
       title: 'NAKLİYAT',
       subItems: [
-        'EMTEA SİGORTASI',
-        'TAŞIYICI SORUMLULUK SİGORTASI',
-        'YAT SİGORTASI',
+        {"title": "EMTEA SİGORTASI", "icon": CupertinoIcons.cart_fill},
+        {"title": "TAŞIYICI SORUMLULUK SİGORTASI", "icon": CupertinoIcons.bus},
+        {"title": "YAT SİGORTASI", "icon": CupertinoIcons.wind},
       ],
     ),
   ];
@@ -118,7 +126,7 @@ class _InsideProductsViewState extends State<InsideProductsView> {
 
 class Category {
   String title;
-  List<String> subItems;
+  List<Map<String, dynamic>> subItems;
   bool isExpanded;
 
   Category({
@@ -208,45 +216,57 @@ class _CategoryWidgetState extends State<CategoryWidget> with SingleTickerProvid
         SizeTransition(
           sizeFactor: _animation,
           axisAlignment: 0.0,
-          child: Column(
-            children: widget.category.subItems.map(
-              (subItem) {
-                return GestureDetector(
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => WebviewDetail(pageTitle: subItem)));
-                  },
-                  child: Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
-                    margin: const EdgeInsets.only(left: 32, right: 32, bottom: 8.0),
-                    decoration: BoxDecoration(
-                      color: widget.themeNotifier.secondaryColor,
-                      borderRadius: BorderRadius.circular(8.0),
-                      border: Border.all(color: Colors.grey[300]!),
+          child: ListView.builder(
+            shrinkWrap: true, // İçeriğe göre boyutlandır
+            physics: const NeverScrollableScrollPhysics(), // İç kaydırmayı devre dışı bırak
+            itemCount: widget.category.subItems.length,
+            itemBuilder: (context, index) {
+              final subItem = widget.category.subItems[index];
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => WebviewDetail(pageTitle: subItem["title"]),
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Flexible(
-                          child: Text(
-                            subItem,
-                            style: TextStyle(
-                              fontSize: 16.0,
-                              color: widget.themeNotifier.primaryColor,
-                              fontWeight: FontWeight.w700,
-                            ),
+                  );
+                },
+                child: Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                  margin: const EdgeInsets.only(left: 32, right: 32, bottom: 8.0),
+                  decoration: BoxDecoration(
+                    color: widget.themeNotifier.secondaryColor,
+                    borderRadius: BorderRadius.circular(16.0),
+                    border: Border.all(color: Colors.grey[300]!),
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(
+                        subItem["icon"], // İlgili ikon
+                        color: widget.themeNotifier.primaryColor,
+                        size: 20,
+                      ),
+                      const SizedBox(width: 10),
+                      Flexible(
+                        child: Text(
+                          subItem["title"], // Alt öğenin başlığı
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            color: widget.themeNotifier.primaryColor,
+                            fontWeight: FontWeight.w700,
                           ),
                         ),
-                        Icon(
-                          Icons.arrow_forward_ios,
-                          color: widget.themeNotifier.primaryColor,
-                        ),
-                      ],
-                    ),
+                      ),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        color: widget.themeNotifier.primaryColor,
+                      ),
+                    ],
                   ),
-                );
-              },
-            ).toList(),
+                ),
+              );
+            },
           ),
         ),
       ],

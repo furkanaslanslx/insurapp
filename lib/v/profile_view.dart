@@ -41,7 +41,7 @@ class _ProfileViewState extends State<ProfileView> {
   Widget _buildAuthButton(LoginViewModel loginViewModel, ThemeNotifier themeNotifier) {
     return Container(
       width: _size.getWidth(context, 670),
-      height: _size.getWidth(context, 60),
+      height: _size.getWidth(context, 100),
       margin: const EdgeInsets.only(bottom: 20),
       child: ElevatedButton(
         onPressed: loginViewModel.isLoading
@@ -221,27 +221,44 @@ class _ProfileViewState extends State<ProfileView> {
                                 ] else ...[
                                   Container(
                                     width: _size.getWidth(context, 670),
-                                    height: _size.getWidth(context, 200),
+                                    height: _size.getWidth(context, 500),
                                     decoration: BoxDecoration(
                                       color: themeNotifier.primaryColor,
                                       borderRadius: BorderRadius.circular(20),
                                     ),
-                                    child: const Center(
-                                      child: Text(
-                                        'Profil bilgilerinizi görüntülemek için giriş yapın',
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Icon(
+                                          Icons.account_circle,
+                                          size: 100,
+                                          color: Colors.white.withValues(alpha: .8),
                                         ),
-                                      ),
+                                        const SizedBox(height: 20),
+                                        const Text(
+                                          'Hoş Geldiniz',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 24,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        const SizedBox(height: 10),
+                                        const Text(
+                                          'Profil bilgilerinizi görüntülemek için\ngiriş yapın',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ],
                                 SizedBox(height: _size.getWidth(context, 30)),
                                 _buildAuthButton(loginViewModel, themeNotifier),
                                 SizedBox(height: navigationHeight),
-                                const SizedBox(height: 500),
                               ],
                             );
                           },
