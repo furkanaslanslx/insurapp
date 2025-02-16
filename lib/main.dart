@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:insurance/v/innerdrawer_view.dart';
 import 'package:insurance/v/outerdrawer_view.dart';
 import 'package:insurance/vm/all_vms.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'screens/onboarding_screen.dart';
 
 void main() {
   Get.put<MyInnerDrawerController>(MyInnerDrawerController());
@@ -36,10 +38,22 @@ class Root extends StatelessWidget {
             useMaterial3: true,
           ),
           themeMode: ThemeMode.light,
-          // home: const Introduction(),
-          home: const InnerDrawerView(),
+          home: FutureBuilder<bool>(
+            future: _checkFirstTime(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const CircularProgressIndicator();
+              }
+              return snapshot.data == true ? const InnerDrawerView() : const OnboardingScreen();
+            },
+          ),
         ),
       ),
     );
+  }
+
+  Future<bool> _checkFirstTime() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool('onboarding_completed') ?? false;
   }
 }

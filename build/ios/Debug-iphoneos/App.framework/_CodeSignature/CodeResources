@@ -10,11 +10,11 @@
 		</data>
 		<key>flutter_assets/AssetManifest.bin</key>
 		<data>
-		p10P8r2jxO+GnAiSsfky8VD9LL0=
+		ntpEq7ZBmgXo4cz7R6gZWDcQs/I=
 		</data>
 		<key>flutter_assets/AssetManifest.json</key>
 		<data>
-		hTDPo50LcKVixWFnGVOZV2v7FOQ=
+		auuK6xI95ZQ+Sn2qowJ64T7bPNQ=
 		</data>
 		<key>flutter_assets/FontManifest.json</key>
 		<data>
@@ -71,6 +71,10 @@
 		<key>flutter_assets/assets/images/arex-logo.png</key>
 		<data>
 		SGyDH8QaImVi7Gzc3QbPnvHoFkY=
+		</data>
+		<key>flutter_assets/assets/images/hasar.svg</key>
+		<data>
+		s8N1UQKClBK8pd65krR0g4zDDm8=
 		</data>
 		<key>flutter_assets/assets/insurance_db.json</key>
 		<data>
@@ -166,7 +170,7 @@
 		</data>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<data>
-		lDIM/MkvGnlObYSh2zEytNJ3asg=
+		mFNIUCphD84XlqpaBCTCnlTJVIw=
 		</data>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -187,14 +191,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			GUS1ldOAw/WjSqXBswk+NB9uiJnFamPqgLcQcB+Zyw0=
+			P7LQBcC/+SsYpIyFlpXUSOuYxjGgwJQt0ZB/51uz3wQ=
 			</data>
 		</dict>
 		<key>flutter_assets/AssetManifest.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			XhOJM62cfnlsZAo/PtmcLa35oEyJyIi7j63AZIy9Fs0=
+			rjdvRWh/fmyulFgbBeYeSfKtBG4qDHQ3EvH+hzvSABM=
 			</data>
 		</dict>
 		<key>flutter_assets/FontManifest.json</key>
@@ -293,6 +297,13 @@
 			<key>hash2</key>
 			<data>
 			EZHHhoVgxNzBK0sp+8D6pGxdZtATVxrUT0CBzCDlQ5c=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/images/hasar.svg</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			wvYqZZDZUxf02B6E+dtJYBmN4q2hgyQSA6fSnVkcgsE=
 			</data>
 		</dict>
 		<key>flutter_assets/assets/insurance_db.json</key>
@@ -460,7 +471,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			JxZNp/eihIs/Pw2sDtAOtEaQhOW2t+Z3WFH3hjV1Pfg=
+			/iZ0H0tKJpEkNAZbSxQlI7d/UWoygny/jXm1xFUHEUw=
 			</data>
 		</dict>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
