@@ -6,6 +6,7 @@ export 'themenotifier.dart';
 
 import 'package:flutter/material.dart';
 import 'package:insurance/vm/customer_viewmodel.dart';
+import 'package:insurance/vm/drawer_controllers.dart';
 import 'package:insurance/vm/insuranceagent_viewmodel.dart';
 import 'package:insurance/vm/login_viewmodel.dart';
 import 'package:insurance/vm/policy_viewmodel.dart';
@@ -21,6 +22,8 @@ class AllVms extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (context) => InnerDrawerProvider()),
+        ChangeNotifierProvider(create: (context) => OuterDrawerProvider()),
         ChangeNotifierProvider(create: (context) => PolicyViewModel()),
         ChangeNotifierProvider(create: (context) => InsuranceagentViewmodel()),
         ChangeNotifierProvider(create: (context) => CustomerViewModel()),

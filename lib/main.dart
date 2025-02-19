@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
 import 'package:insurance/v/innerdrawer_view.dart';
-import 'package:insurance/v/outerdrawer_view.dart';
 import 'package:insurance/vm/all_vms.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'screens/onboarding_screen.dart';
 
 void main() {
-  Get.put<MyInnerDrawerController>(MyInnerDrawerController());
-  Get.put<MyOuterDrawerController>(MyOuterDrawerController());
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,

@@ -248,12 +248,6 @@
       "languageVersion": "2.17"
     },
     {
-      "name": "get",
-      "rootUri": "file:///Users/furkanaslan/.pub-cache/hosted/pub.dev/get-4.6.6",
-      "packageUri": "lib/",
-      "languageVersion": "2.15"
-    },
-    {
       "name": "glob",
       "rootUri": "file:///Users/furkanaslan/.pub-cache/hosted/pub.dev/glob-2.1.2",
       "packageUri": "lib/",
@@ -620,7 +614,7 @@
       "languageVersion": "3.4"
     }
   ],
-  "generated": "2025-01-25T13:39:13.288932Z",
+  "generated": "2025-02-18T18:52:38.971161Z",
   "generator": "pub",
   "generatorVersion": "3.6.1",
   "flutterRoot": "file:///opt/homebrew/Caskroom/flutter/3.24.5/flutter",
